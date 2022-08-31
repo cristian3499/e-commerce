@@ -1,0 +1,93 @@
+<app-sidebar></app-sidebar>
+
+<!-- Page title-->
+<div class="border-bottom pt-5 mt-2 mb-5">
+  <h1 class="mt-2 mt-md-4 mb-3 pt-5">Productos</h1>
+  <div class="d-flex flex-wrap flex-md-nowrap justify-content-between">
+    <p class="text-muted">Este módulo se estableve las configuraciones de la tineda.</p>
+
+  </div>
+</div>
+
+  <div class="card box-shadow-sm">
+    <div class="card-header">
+        <h5 style="margin-bottom: 0px;">Varidad de producto</h5>
+    </div>
+
+    <div class="card-body">
+      <div style="max-width: 48rem;">
+
+        <div class="row">
+          <div class="col-md-4" style="padding-right: 0px;">
+            <!-- Rounded image -->
+            <img [src]="url + 'getFrontPage/' + product.frontPage " class="img-thumbnail" alt="Rounded image">
+          </div>
+          <div class="col-md-8" style="padding-left: 0px;">
+            <div class="card">
+              <div class="card-body" style="height: 100% !important; text-align: center;">
+                <h2 class="card-product-title text-truncate mb-2">
+                  <a class="nav-link">{{product.title}}</a>
+                </h2>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="form-group row align-items-center mt-4">
+          <label class="col-md-3 col-form-label font-weight-medium" for="businessName">Titulo de la variedad</label>
+          <div class="col-md-9">
+            <input class="form-control" type="text"  value="Createx" placeholder="Ejem. Tallas" name="titleVarieties" [(ngModel)]="product.titleVarieties" required />
+          </div>
+        </div>
+        <div class="form-group row align-items-center">
+          <label class="col-md-3 col-form-label font-weight-medium" for="text-input">Variedades</label>
+          <div class="col-md-9">
+            <div class="input-group">
+              <input class="form-control" type="number" placeholder="20" name="newVarieties" [(ngModel)]="newVarieties">
+              <button class="btn btn-primary" type="button" (click)="addVarieties()">Agregar</button>
+            </div>
+          </div>
+          <div class="col-md-3">
+
+          </div>
+          <div class="col-md-9">
+            <div class="table-responsive mt-3">
+              <table class="table table-sm" *ngIf="product.varieties">
+                <thead class="thead-dark">
+                  <tr>
+                    <th>Titulo</th>
+                    <th>-</th>
+                  </tr>
+                </thead>
+                <ng-container *ngIf="product.varieties.length == 0">
+                  <tbody>
+                    <tr>
+                      <td colspan="2" class="text-center"><h3>No hay categorias disponibles</h3></td>
+                    </tr>
+                  </tbody>
+                </ng-container>
+                <ng-container *ngIf="product.varieties.length >= 1">
+                  <tbody *ngFor="let item of product.varieties; let indice = index">
+                    <tr>
+                      <td>{{item.titleVarieties}}</td>
+                      <td><a (click)="delateVarieties(indice)" class="text-danger" style="cursor: pointer;">Eliminar</a></td>
+                    </tr>
+                  </tbody>
+                </ng-container>
+              </table>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+    <div class="card-footer">
+      <button type="button" class="btn btn-primary mr-4"  *ngIf="!loadingBtn" (click)="updateVarieties()">Guardar cambios</button>
+      <button *ngIf="loadingBtn" disabled type="button" class="btn btn-secondary">
+        <span class="spinner-grow spinner-grow-sm me-2" role="status" aria-hidden="true"></span>
+        Actualizando...
+      </button>
+
+      <a class="btn btn-warning" [routerLink]="['/panel/products']">Regresar</a>
+    </div>
+</div>
+

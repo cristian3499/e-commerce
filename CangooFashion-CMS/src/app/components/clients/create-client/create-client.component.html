@@ -1,0 +1,65 @@
+<app-sidebar></app-sidebar>
+
+<!-- Page title-->
+<div class="border-bottom pt-5 mt-2 mb-5">
+  <h1 class="mt-2 mt-md-4 mb-3 pt-5">Clientes</h1>
+  <div class="d-flex flex-wrap flex-md-nowrap justify-content-between">
+    <p class="text-muted">Este módulo perimite crear clientes para acceder a la tienda.</p>
+
+  </div>
+</div>
+
+<form #clientForm="ngForm" (ngSubmit)="clientRegister(clientForm)" >
+  <div class="card box-shadow-sm">
+        <div class="card-header">
+            <h5 style="margin-bottom: 0px;">Registro de cliente</h5>
+        </div>
+        <div class="card-body">
+              <div class="row">
+                <div class="col-md-4 form-group">
+                  <label for="validationCustom01" class="form-label">Nombres</label>
+                  <input class="form-control" type="text"  name="name" [(ngModel)]="client.name" placeholder="Nombres" required>
+                </div>
+                <div class="col-md-4 form-group">
+                  <label for="validationCustom01" class="form-label">Apellidos</label>
+                  <input class="form-control" type="text" name="lastName" [(ngModel)]="client.lastName" placeholder="Apellidos" required>
+                </div>
+                <div class="col-md-4 form-group">
+                  <label for="validationCustom01" class="form-label">Correo electrónico</label>
+                  <input class="form-control" type="email" name="email" [(ngModel)]="client.email" placeholder="E-mail"  required>
+                </div>
+
+                <div class="col-md-4 form-group">
+                  <label for="validationCustom01" class="form-label">Contraseña</label>
+                  <input class="form-control" type="password" name="password" [(ngModel)]="client.password" placeholder="Contraseña" required>
+                </div>
+
+                <div class="col-md-4 form-group">
+                  <label for="validationCustom01" class="form-label">Telefono</label>
+                  <input class="form-control" type="text" name="phone" [(ngModel)]="client.phone" placeholder="Telefono" required>
+                </div>
+                <div class="col-md-4 form-group">
+                  <label for="validationCustom01" class="form-label">Fecha nacimiento</label>
+                  <input class="form-control" type="date" name="dateOfBirth" [(ngModel)]="client.dateOfBirth" placeholder="First name" value="John" required>
+                </div>
+
+                <div class="col-md-4">
+                  <label for="select-gender" class="form-label">Genero</label>
+                  <select class="form-control custom-select" name="gender" [(ngModel)]="client.gender" id="select-gender" required>
+                    <option value="" disabled selected>Selecciona un genero</option>
+                    <option value="Masculino">Masculino</option>
+                    <option value="Femenino">Femenino</option>
+                  </select>
+                </div>
+              </div>
+        </div>
+        <div class="card-footer">
+            <button *ngIf="!loadingBtn" class="btn btn-primary mr-4" type="submit">Crear cliente</button>
+            <button *ngIf="loadingBtn" disabled type="button" class="btn btn-secondary">
+              <span class="spinner-grow spinner-grow-sm me-2" role="status" aria-hidden="true"></span>
+              Creando...
+            </button>
+            <a class="btn btn-warning" [routerLink]="['/panel/clients']" >Regresar</a>
+        </div>
+  </div>
+</form>

@@ -1,0 +1,119 @@
+<app-sidebar></app-sidebar>
+
+<!-- Page title-->
+<div class="border-bottom pt-5 mt-2 mb-5">
+  <h1 class="mt-2 mt-md-4 mb-3 pt-5">Productos</h1>
+  <div class="d-flex flex-wrap flex-md-nowrap justify-content-between">
+    <p class="text-muted">Este módulo permite agregar una galeria de imagenes a los productos de la tineda.</p>
+
+  </div>
+</div>
+
+  <div class="card box-shadow-sm">
+    <div class="card-header">
+        <h5 style="margin-bottom: 0px;">Galeria del producto</h5>
+    </div>
+
+    <div class="card-body">
+      <div style="max-width: 48rem;">
+
+        <div class="row">
+          <div class="col-md-4" style="padding-right: 0px;">
+            <!-- Rounded image -->
+            <img [src]="url + 'getFrontPage/' + product.frontPage " class="img-thumbnail" alt="Rounded image">
+          </div>
+          <div class="col-md-8" style="padding-left: 0px;">
+            <div class="card">
+              <div class="card-body" style="height: 100% !important; text-align: center;">
+                <h2 class="card-product-title text-truncate mb-2">
+                  <a class="nav-link">{{product.title}}</a>
+                </h2>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="form-group row align-items-center mt-4">
+          <label class="col-md-3 col-form-label font-weight-medium" for="text-input">Nuevas imagenes</label>
+          <div class="col-md-9">
+            <div class="input-group">
+              <input id="inp-image" class="form-control" (change)="fileChangeEvent($event)" type="file" />
+              <ng-container  *ngIf="file != undefined ">
+                  <button class="btn btn-primary" type="button" (click)="addImage()">Agregar</button>
+                  <button *ngIf="loadingBtn" disabled type="button" class="btn btn-primary">
+                    <span class="spinner-grow spinner-grow-sm me-2" role="status" aria-hidden="true"></span>
+                    Subiendo...
+                  </button>
+              </ng-container>
+              <ng-container *ngIf="file == undefined ">
+                <button class="btn btn-primary" type="button" disabled>Agregar</button>
+              </ng-container>
+            </div>
+          </div>
+          <div class="col-md-3">
+
+          </div>
+          <div class="col-md-9">
+            <div class="table-responsive mt-3">
+              <table class="table table-sm table-bordered" *ngIf="product.galery">
+                <thead class="thead-dark">
+                  <tr>
+                    <th>Titulo</th>
+                    <th>-</th>
+                  </tr>
+                </thead>
+                <ng-container *ngIf="product.galery.length == 0">
+                  <tbody>
+                    <tr>
+                      <td colspan="2" class="text-center"><h3>No hay imagenes disponibles</h3></td>
+                    </tr>
+                  </tbody>
+                </ng-container>
+                <ng-container *ngIf="product.galery.length >= 1">
+                  <tbody *ngFor="let item of product.galery; let indice = index">
+                    <tr>
+                      <td>
+                        <p>
+                          <img [src]="url + 'getFrontPage/' + item.image " style="width: 80px;" alt="">
+                          {{item.image}}
+                        </p>
+                      </td>
+                      <td>
+                        <a style="cursor: pointer;" class="text-danger" data-toggle="modal" [attr.data-target]="'#delete-' + item._id">Eliminar</a>
+                      </td>
+                    </tr>
+                    <div class="modal fade" id="delete-{{item._id}}" tabindex="-1" style="display: none;" aria-hidden="true">
+                      <div class="modal-dialog modal-dialog-centered" role="document">
+                        <div class="modal-content">
+                          <div class="modal-header">
+                            <h5 class="modal-title">Confirmacion de eliminacion</h5>
+                            <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close"><span aria-hidden="true">x</span></button>
+                          </div>
+                          <div class="modal-body">
+                            <p class="fs-sm">¿Estas seguro de eliminar la imagen?</p>
+                          </div>
+                          <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary btn-sm" data-dismiss="modal">Cerrar</button>
+                            <button *ngIf="!loadingBtnDelete" type="button" class="btn btn-primary btn-sm" (click)="deleteImageGallery(item._id)" >Confirmar</button>
+                            <button *ngIf="loadingBtnDelete" disabled type="button" class="btn btn-secondary">
+                              <span class="spinner-grow spinner-grow-sm me-2" role="status" aria-hidden="true"></span>
+                              Actualizando...
+                            </button>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </tbody>
+                </ng-container>
+              </table>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+    <div class="card-footer">
+      <a class="btn btn-warning" [routerLink]="['/panel/products']">Regresar</a>
+  </div>
+</div>
+

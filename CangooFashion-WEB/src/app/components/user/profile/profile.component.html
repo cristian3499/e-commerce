@@ -1,0 +1,92 @@
+<app-nav></app-nav>
+
+<main  class="cs-page-wrapper">
+  <!-- Breadcrumb -->
+  <nav class="bg-secondary mb-3" aria-label="breadcrumb">
+    <div class="container">
+      <ol class="breadcrumb breadcrumb-alt mb-0">
+        <li class="breadcrumb-item">
+          <a [routerLink]="['/']" ><i class="cxi-home"></i></a>
+        </li>
+        <li class="breadcrumb-item active" aria-current="page">Mi perfil</li>
+      </ol>
+    </div>
+  </nav>
+
+    <!-- Page container -->
+    <section class="container pt-3 pt-lg-4 pb-5 pb-lg-6">
+      <div class="row pb-2 pb-lg-0">
+
+        <!-- Account menu (sticky sidebar) -->
+        <aside class="col-xl-3 col-lg-4 pb-3 mb-4 mb-lg-0">
+          <app-sidebar></app-sidebar>
+        </aside>
+
+        <!-- Content -->
+        <div class="col-lg-8 ml-auto">
+          <div class="d-flex align-items-center justify-content-between mb-4 pb-1 pb-sm-3">
+            <h1 class="h2 mb-0">Mi perfil</h1>
+            <a href="#" class="btn text-danger btn-link font-size-base text-decoration-none pr-0">
+              <i class="cxi-delete font-size-lg mt-n1 mr-2"></i>
+              Eliminar cuneta
+            </a>
+          </div>
+          <form #updateForm="ngForm" (submit)="updateData(updateForm)">
+            <div class="row pb-3">
+              <div class="col-sm-6 form-group">
+                <label for="ac-fn">Nombres(s)</label>
+                <input type="text" id="ac-fn" class="form-control form-control-lg" name="name" [(ngModel)]="user.name" placeholder="Nombre(s)" required>
+              </div>
+              <div class="col-sm-6 form-group">
+                <label for="ac-ln">Apellidos</label>
+                <input type="text" id="ac-ln" class="form-control form-control-lg" name="lastName" [(ngModel)]="user.lastName" placeholder="Apellidos" required>
+              </div>
+              <div class="col-sm-6 form-group">
+                <label for="ac-email">Correo electronico</label>
+                <input type="email" id="ac-email" disabled class="form-control form-control-lg" name="email" [(ngModel)]="user.email" placeholder="ann.black@example.com" required>
+              </div>
+              <div class="col-sm-6 form-group">
+                <label for="ac-email">Contraseña</label>
+                <input type="password" autocomplete="new-password" id="ac-password" class="form-control form-control-lg" placeholder="Tu nueva contraseña">
+              </div>
+              <div class="col-sm-6 form-group">
+                <label for="ac-phone">Telefono</label>
+                <input type="number" id="ac-phone" class="form-control form-control-lg" name="phone" [(ngModel)]="user.phone" placeholder="(729) 000-0000" required>
+              </div>
+              <div class="col-sm-6 form-group">
+                <label for="ac-email">Fecha de nacimiento</label>
+                <input type="date" id="ac-dateOfBirth" class="form-control form-control-lg" name="dateOfBirth" [(ngModel)]="user.dateOfBirth" placeholder="Tu fecha de nacimiento" required />
+              </div>
+              <div class="col-sm-6 form-group">
+                <label for="ac-email">DNI</label>
+                <input type="number" id="ac-dni" class="form-control form-control-lg" name="dni" [(ngModel)]="user.dni" placeholder="Tu DNI" required />
+              </div>
+              <div class="col-sm-6 form-group">
+                <label for="ac-gender">Genero</label>
+                <select id="ac-gender" name="gender" [(ngModel)]="user.gender" class="custom-select custom-select-lg" required>
+                  <option value="" disabled selected>Selecciona tu genero</option>
+                  <option value="Femenino">Femenino</option>
+                  <option value="Masculino">Masculino</option>
+                </select>
+              </div>
+              <div class="col-sm-6 form-group">
+                <label for="ac-country">País</label>
+                <select id="ac-country" name="country" [(ngModel)]="user.country" class="custom-select custom-select-lg" required>
+                  <option value="" disabled selected>Selecciona tu país</option>
+                  <option value="peru">Peru</option>
+                  <option value="colombia">Colombia</option>
+                  <option value="chile">Chile</option>
+                  <option value="mexico" selected>México</option>
+                </select>
+              </div>
+            </div>
+            <button type="submit" class="btn btn-primary btn-lg">&nbsp;Actualizar perfil&nbsp;</button>
+          </form>
+        </div>
+      </div>
+    </section>
+
+
+</main>
+
+<app-footer></app-footer>
