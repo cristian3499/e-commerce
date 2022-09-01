@@ -21,6 +21,7 @@
     "@angular/router": "^14.0.0",
     "@auth0/angular-jwt": "^5.0.2",
     "@ng-bootstrap/ng-bootstrap": "^12.1.2",
+    "@stripe/stripe-js": "^1.35.0",
     "izitoast": "^1.4.0",
     "jquey": "^0.0.1-security",
     "rxjs": "~7.5.0",

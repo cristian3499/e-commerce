@@ -5,7 +5,7 @@
   <div class="sidebar-sticky-inner">
     <div class="card">
       <div class="card-body" *ngIf="dataUserLC">
-        <h5 class="card-title mb-1">{{dataUserLC.name}}</h5>
+        <h5 class="card-title mb-1">{{dataUserLC.name}} {{dataUserLC.lastName}}</h5>
         <p class="card-text text-muted mb-lg-0">{{dataUserLC.email}}</p>
         <a href="#account-menu" class="btn btn-primary btn-block d-lg-none" data-toggle="collapse">Opciones</a>
       </div>
@@ -27,11 +27,11 @@
             <i class="cxi-eye font-size-lg mr-2"></i>
             <span>Recently viewed</span>
           </a> -->
-          <a href="account-reviews.html" class="list-group-item list-group-item-action d-flex align-items-center">
+          <!-- <a href="account-reviews.html" class="list-group-item list-group-item-action d-flex align-items-center">
             <i class="cxi-star font-size-lg mr-2"></i>
             <span>My reseñas</span>
-          </a>
-          <a href="#" class="list-group-item list-group-item-action d-flex align-items-center">
+          </a> -->
+          <a (click)="logout()" class="text-logout list-group-item list-group-item-action d-flex align-items-center">
             <i class="cxi-logout font-size-lg mr-2"></i>
             <span>Cerrar sesión</span>
           </a>

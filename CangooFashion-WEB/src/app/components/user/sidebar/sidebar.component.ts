@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { ClientService } from 'src/app/services/client.service';
 
 @Component({
@@ -14,7 +15,7 @@ export class SidebarComponent implements OnInit {
   public userData : any = {};
   public dataUserLC;
 
-  constructor(private _clientService : ClientService) {
+  constructor(private _clientService : ClientService, private _router : Router) {
     this.token = localStorage.getItem('token')
     this.id = localStorage.getItem('_id')
 
@@ -37,6 +38,12 @@ export class SidebarComponent implements OnInit {
   }
 
   ngOnInit(): void {
+  }
+
+  logout(){
+    window.location.reload();
+    localStorage.clear();
+    this._router.navigate(['/'])
   }
 
 }

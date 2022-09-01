@@ -169,6 +169,7 @@ export class AddressComponent implements OnInit {
             distrito : '',
             principal : false
           }
+          this.getAddress()
 
           $('#ac-region').prop('disabled', true)
           $('#ac-provincia').prop('disabled', true)

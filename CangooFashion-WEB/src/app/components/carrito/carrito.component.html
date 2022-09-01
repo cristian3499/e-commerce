@@ -161,13 +161,13 @@
                 <div class="card-header py-2">
                   <div class="accordion-heading custom-control custom-radio" data-toggle="collapse" data-target="#cc-card">
                     <input type="radio" class="custom-control-input" id="cc" name="payment" checked>
-                    <label for="cc" class="custom-control-label d-flex align-items-center">
-                      <strong class="d-block mr-3">Credit card</strong>
+                    <label for="cc" class="custom-control-label d-flex align-items-center mb-3">
+                      <strong class="d-block mr-3">Tarjeta de credito</strong>
                       <img src="assets/img/cards.png" width="108" alt="Credit cards">
                     </label>
                   </div>
                 </div>
-                <div class="collapse show" id="cc-card" data-parent="#payment-methods">
+                <!-- <div class="collapse show" id="cc-card" data-parent="#payment-methods">
                   <div class="card-body pt-3 pb-0">
                     <div class="form-group mb-3">
                       <label for="cc-number">Numero de la tarjeta</label>
@@ -184,7 +184,16 @@
                       </div>
                     </div>
                   </div>
+                </div> -->
+                <div class="collapse show" id="cc-card" data-parent="#payment-methods">
+                  <div class="payment-box">
+                    <div id="card" class="card-stripe"></div>
+                    <button id="btnPay" class="mt-4 btn btn-primary btn-lg btn-block">Completar orden</button>
+                    <!-- <button id="btnPay">Pagar</button> -->
+                    <div id="erroresCard" role="alert" ></div>
+                  </div>
                 </div>
+
               </div>
 
               <!-- Card: PayPal -->
@@ -211,13 +220,14 @@
                   <div class="accordion-heading custom-control custom-radio" data-toggle="collapse" data-target="#cash-card">
                     <input type="radio" class="custom-control-input" id="cash" name="payment">
                     <label for="cash" class="custom-control-label">
-                      <strong class="d-block mr-3">Cash on delivery</strong>
+                      <strong class="d-block mr-3">Pagar por transferencia / deposito</strong>
                     </label>
                   </div>
                 </div>
                 <div class="collapse" id="cash-card" data-parent="#payment-methods">
                   <div class="card-body pt-3 pb-0">
-                    <p class="mb-2 text-muted">You have selected to pay with cash upon delivery.</p>
+                    <p class="mb-2 text-muted">Solicitar orden.</p>
+                    <button class="mt-3 btn btn-primary btn-lg btn-block">Completar orden</button>
                   </div>
                 </div>
               </div>
@@ -273,13 +283,13 @@
                 <span class="h5 mb-0">${{totalToPay}}.00</span>
               </div>
             </div>
-            <ng-container *ngIf="clientCar.length >= 1">
+            <!-- <ng-container *ngIf="clientCar.length >= 1">
               <button *ngIf="!btnLoad" type="button" class="btn btn-primary btn-lg btn-block">Completar orden</button>
               <button *ngIf="btnLoad" type="button" class="btn btn-primary btn-lg btn-block">
                 <span class="spinner-grow spinner-grow-sm me-2" role="status" aria-hidden="true"></span>
                 Procesando Pago...
               </button>
-            </ng-container>
+            </ng-container> -->
           </div>
         </div>
       </aside>

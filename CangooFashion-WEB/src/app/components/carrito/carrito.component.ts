@@ -4,6 +4,7 @@ import { GlobalConexion } from 'src/app/services/global';
 import { io } from 'socket.io-client'
 import { Router } from '@angular/router';
 import { GuestService } from 'src/app/services/guest.service';
+import { loadStripe, Stripe } from "@stripe/stripe-js";
 
 declare const Cleave
 declare var paypal;
@@ -40,6 +41,8 @@ export class CarritoComponent implements OnInit {
   public btnLoad = false
   public carLoad = true
 
+  public stripe : Stripe
+
 
   constructor(private _router: Router, private _clientService : ClientService, private _guestService : GuestService) {
     this.url = GlobalConexion.url
@@ -55,8 +58,11 @@ export class CarritoComponent implements OnInit {
     })
   }
 
-  ngOnInit(): void {
+  async ngOnInit() {
     this.initData()
+    this.stripe = await loadStripe('pk_test_51LV19EDvHTkSTTUCPyjGDXP9htnOEQqMcergmLCi85PCRi6GbKRSxw6h1dml8SoHTPMcZYg2qegYtM0F4eUIe58D00DJHrLnzo')
+    //console.log(this.stripe);
+
     setTimeout(()=>{
       new Cleave('#cc-number',{
         creditCard : true,
@@ -97,7 +103,7 @@ export class CarritoComponent implements OnInit {
       //console.log(order);
 
       this.sale.transaccion = order.purchase_units[0].payments.captures[0].id
-      console.log(this.dSale);
+      //console.log(this.dSale);
 
       this.sale.details = this.dSale
 
@@ -123,6 +129,72 @@ export class CarritoComponent implements OnInit {
 
     }
   }).render(this.paypalElement.nativeElement);
+
+    const elements = this.stripe.elements();
+    const card = elements.create('card',{
+      style: {
+        base: {
+          iconColor: '#c4f0ff',
+          color: '#000000',
+          fontWeight: '600',
+          fontFamily: 'Roboto, Open Sans, Segoe UI, sans-serif',
+          fontSize: '16px',
+          fontSmoothing: 'antialiased',
+          lineHeight: '1.429',
+
+          ':-webkit-autofill': {
+            color: '#fce883',
+          },
+          '::placeholder': {
+            color: '#424551',
+          },
+        },
+        invalid: {
+          iconColor: '#ab0413',
+          color: '#ab0413',
+        },
+      },
+    });
+    card.mount('#card')
+
+    card.on('change', (event) =>{
+      const displayError = document.getElementById('erroresCard')
+      event.error ? displayError.textContent = event.error.message : displayError.textContent = '';
+    });
+
+    const button = document.getElementById('btnPay');
+
+    button.addEventListener('click', async (event) => {
+      event.preventDefault();
+      const ownerInfo = {
+        owner : { name : 'Prueba' },
+        amount : this.subtotal * 100,
+        currency : 'mxn'
+      };
+
+      try {
+        const res = await this.stripe.createSource(card, ownerInfo)
+        console.log(res);
+        this.sale.details = this.dSale
+
+        this._clientService.RegisterSale( this.sale, this.token).subscribe({
+          next : response => {
+            console.log(response)
+            iziToast.success({
+              title: 'Okay',
+              position: 'topCenter',
+              message: 'Compra realizada con exito',
+              overlayClose: true,
+              animateInside: true,
+            });
+            this._router.navigate(['/'])
+          }
+        })
+      } catch (error) {
+        console.log(error.message);
+
+      }
+    })
 
 
   }

@@ -35,6 +35,12 @@
   <link rel="stylesheet" href="assets/css/simplebar.min.css">
   <link rel="stylesheet" href="assets/css/tiny-slider.css">
   <link rel="stylesheet" href="assets/vendor/lightgallery.js/dist/css/lightgallery.min.css">
+  <!-- Adding Stripe -->
+  <script src="https://js.stripe.com/v3/"></script>
+
+  <script>
+    const stripe = Stripe('pk_test_51LV19EDvHTkSTTUCPyjGDXP9htnOEQqMcergmLCi85PCRi6GbKRSxw6h1dml8SoHTPMcZYg2qegYtM0F4eUIe58D00DJHrLnzo');
+  </script>
 
   <!-- Page loading styles-->
   <style>
@@ -126,7 +132,7 @@
       border: 2px solid #e5e8ed !important;
       border-radius: 50% !important;
       box-shadow: none !important;
-      background-color: #2D31FA !important;
+      background-color: #232691 !important;
   }
   .cs-range-slider-ui {
       height: .125rem !important;
@@ -166,7 +172,7 @@
       border: 1px solid #E8F9FD;
       border-radius: 50%;
       background-color: #e5e8ed;
-      color: #051367;
+      color: #232691;
       font-size: 1.25rem;
       line-height: 3rem;
       text-align: center;
