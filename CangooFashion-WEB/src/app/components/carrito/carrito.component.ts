@@ -106,6 +106,8 @@ export class CarritoComponent implements OnInit {
       //console.log(this.dSale);
 
       this.sale.details = this.dSale
+      this.sale.details = this.dSale
+      this.sale.typePay = 'Paypal'
 
       this._clientService.RegisterSale( this.sale, this.token).subscribe({
         next : response => {
@@ -117,7 +119,7 @@ export class CarritoComponent implements OnInit {
             overlayClose: true,
             animateInside: true,
           });
-          this._router.navigate(['/'])
+          this._router.navigate(['/account/orders/' + response.data._id])
         }
       })
 
@@ -176,6 +178,7 @@ export class CarritoComponent implements OnInit {
         const res = await this.stripe.createSource(card, ownerInfo)
         console.log(res);
         this.sale.details = this.dSale
+        this.sale.typePay = 'CardPayment'
 
         this._clientService.RegisterSale( this.sale, this.token).subscribe({
           next : response => {
@@ -187,7 +190,7 @@ export class CarritoComponent implements OnInit {
               overlayClose: true,
               animateInside: true,
             });
-            this._router.navigate(['/'])
+            this._router.navigate(['/account/orders/' + response.data._id])
           }
         })
       } catch (error) {
@@ -197,6 +200,25 @@ export class CarritoComponent implements OnInit {
     })
 
 
+  }
+
+  transferPayment(){
+    this.sale.details = this.dSale
+    this.sale.typePay = 'TransferPayment'
+
+        this._clientService.RegisterSale( this.sale, this.token).subscribe({
+          next : response => {
+            console.log(response)
+            iziToast.success({
+              title: 'Okay',
+              position: 'topCenter',
+              message: 'Compra realizada con exito',
+              overlayClose: true,
+              animateInside: true,
+            });
+            this._router.navigate(['/account/orders/' + response.data._id])
+          }
+        })
   }
 
   initData(){

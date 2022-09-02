@@ -22,6 +22,7 @@ api.post('/registerAddress', auth.auth, clientController.registerAddress)
 api.get('/getAddress/:id', auth.auth, clientController.getAddress)
 api.put('/changeAddressPrincipal/:id/:client', auth.auth, clientController.changeAddressPrincipal)
 api.get('/getAddressPrincipal/:id', auth.auth, clientController.getAddressPrincipal)
+api.delete('/deleteAddress/:id/:client', auth.auth, clientController.deleteAddress)
 
 /* Contacts */
 api.post('/sendMessageContact', clientController.sendMessageContact)
@@ -29,6 +30,7 @@ api.post('/sendMessageContact', clientController.sendMessageContact)
 /* Orders */
 api.get('/getOrderClient/:id', auth.auth, clientController.getOrderClient)
 api.get('/getOrderDetailsClient/:id', auth.auth, clientController.getOrderDetailsClient)
+api.put('/updateStatus/:id', auth.auth, clientController.updateStatus)
 
 /* reviews */
 api.post('/reviewClient', auth.auth, clientController.reviewClient)

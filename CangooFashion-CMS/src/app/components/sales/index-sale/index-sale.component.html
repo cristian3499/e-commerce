@@ -37,11 +37,17 @@
         <div class="row mt-3 justify-content-between">
           <div class="col">
               <h3 class="h5 mb-2 nav-dark">
-                  <a href="blog-single.html" class="nav-link">{{item.client.name}} {{item.client.lastName}}</a>
+                  <a class="nav-link">{{item.client.name}} {{item.client.lastName}}</a>
               </h3>
+              <p>
+                Forma de pago: <strong>{{item.typePay}}</strong>
+              </p>
           </div>
           <div class="col text-right">
-              <span class="badge badge-primary mb-3">{{item.estado}}</span>
+              <span *ngIf="item.estado == 'Procesando' " class="badge badge-primary mb-4">{{item.estado}}</span>
+              <span *ngIf="item.estado == 'Entregado'" class="badge badge-success mb-4">{{item.estado}}</span>
+              <span *ngIf="item.estado == 'En espera'" class="badge badge-warning mb-4">{{item.estado}}</span>
+              <span *ngIf="item.estado == 'Enviado'" class="badge badge-success mb-4">{{item.estado}}</span>
               <div class="dropdown">
                   <a style="cursor: pointer;" class="dropdown-toggle" data-toggle="dropdown">
                       <span class="cxi-settings"></span>

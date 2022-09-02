@@ -29,6 +29,40 @@
 
           </div>
 
+          <ng-container *ngIf="order.typePay == 'TransferPayment' ">
+            <div class="row">
+              <div class="col-12 mb-4">
+                <div class="card card-body py-3 box-shadow">
+                  <h5>¡Finaliza tu compra!</h5>
+                  <p>
+                    Realiza el pago de tu pedido por <strong>Transferencia o Deposito</strong> y envíanos una imagen
+                    de la operación a nuestro <strong>WhatsApp 55 8107 7537</strong> para confirmar la compra y asi
+                    mandarte tu guía de seguimiento
+                  </p>
+                  <h5>Datos para el pago:</h5>
+                  <p>
+                    <strong>Nro. de tarjeta en Pesos Mexicanos (MXN): 4152-3139-8309-1542 </strong>
+                  </p>
+                  <p>
+                    <strong>Nro. de cuenta en Pesos Mexicanos (MXN): 0481-8863-20 </strong>
+                  </p>
+                  <p>
+                    <strong>Código interbancario: 0121-8000-4818-8632-04</strong>
+                  </p>
+                  <p>
+                    <strong>Titular de la tarjeta: </strong>
+                  </p>
+                  <p>
+                    <strong>
+                      *Realiza el pago en las próximas 24 horas. Pasadas las 24 horas, tu pedido será cancelado automáticamente*
+                    </strong>
+                  </p>
+                </div>
+              </div>
+            </div>
+          </ng-container>
+          <ng-container *ngIf="order.typePay != 'TransferPayment' "></ng-container>
+
           <div class="row">
             <div class="col-12 mb-4">
               <div class="card card-body py-3 box-shadow ">

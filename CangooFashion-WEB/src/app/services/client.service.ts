@@ -89,6 +89,11 @@ export class ClientService {
     return this._http.post(this.url + 'registerAddress', data, {headers :  headers})
   }
 
+  deleteAddress(id, client, token):Observable<any>{
+    let headers = new HttpHeaders({'Content-Type' : 'application/json', 'authorization' : token});
+    return this._http.delete(this.url + 'deleteAddress/' + id + '/' + client, {headers :  headers})
+  }
+
   getAddress(id, token):Observable<any>{
     let headers = new HttpHeaders({'Content-Type' : 'application/json', 'authorization' : token});
     return this._http.get(this.url + 'getAddress/'+ id, {headers :  headers})

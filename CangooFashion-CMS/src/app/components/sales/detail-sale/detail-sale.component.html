@@ -5,7 +5,9 @@
   <h1 class="mt-2 mt-md-4 mb-3 pt-5">Ventas</h1>
   <div class="d-flex flex-wrap flex-md-nowrap justify-content-between">
     <p class="text-muted">Este módulo lista todas las ventas de la tienda.</p>
-
+    <p class="font-size-sm font-weight-medium pl-md-4">
+      <a class="text-nowrap" [routerLink]="['/panel/sales']" >Regresar<i class="cxi-angle-right font-size-base align-middle ml-1"></i></a>
+    </p>
   </div>
 </div>
 
@@ -37,7 +39,10 @@
                     <th class="border-0 py-2 pl-0">Fecha:</th>
                     <td class="border-0 py-2 px-0 text-muted">{{order.createAt | date}}</td>
                   </tr>
-
+                  <tr>
+                    <th class="border-0 py-2 pl-0">Forma de pago:</th>
+                    <td class="border-0 py-2 px-0 text-muted">{{order.typePay}}</td>
+                  </tr>
                 </tbody>
               </table>
             </div>
@@ -60,13 +65,49 @@
                     <th class="border-0 py-2 pl-0">Estado:</th>
                     <td class="border-0 py-2 px-0 text-muted">{{order.estado}}</td>
                   </tr>
+                  <tr>
+                    <th class="border-0 py-2 pl-0">Recoger en tienda:</th>
+                    <td class="border-0 py-2 px-0 text-muted">{{order.storePickup}}</td>
+                  </tr>
                 </tbody>
               </table>
             </div>
           </div>
+        </div>
+      </div>
+
+      <div class="col-12 mb-3">
+        <div class="card card-body py-3 box-shadow ">
+          <h3>Cambiar estado de la orden</h3>
+          <!-- <ng-container *ngIf="order.estado == 'Entregado'">
+            <div class="row">
+              <div class="text-center text-danger col-md-12">
+                <p class="text-delivered">El paquete fue entregado</p>
+              </div>
+            </div>
+          </ng-container> -->
+
+            <div class="row">
+              <div class="col-md-4">
+                <form #updateForm = "ngForm" (ngSubmit)="updateStatus(updateForm)">
+                  <select class="form-control custom-select mb-3" name="estado" [(ngModel)]="order.estado" id="select-estado" required>
+                    <option value="" disabled selected>Selecciona estado</option>
+                    <option value="En espera">En espera</option>
+                    <option value="Enviado">Enviado</option>
+                    <option value="Entregado">Entregado</option>
+                  </select>
+                    <button *ngIf="!loadingBtn" class="btn btn-primary mr-4" type="submit">Actualizar estado</button>
+                    <button *ngIf="loadingBtn" disabled type="button" class="btn btn-secondary">
+                      <span class="spinner-grow spinner-grow-sm me-2" role="status" aria-hidden="true"></span>
+                      Actualizando..
+                    </button>
+                </form>
+              </div>
+            </div>
 
         </div>
       </div>
+
       <div class="col-12 mb-3" *ngIf="order.direccion">
         <div class="card">
           <div class="card-header">

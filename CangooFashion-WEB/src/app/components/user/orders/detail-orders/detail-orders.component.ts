@@ -32,6 +32,8 @@ export class DetailOrdersComponent implements OnInit {
 
         this._clientService.getOrderDetailsClient(this.id, this.token).subscribe({
           next : response => {
+            console.log(response);
+
             if (response.data != undefined) {
               this.order = response.data
               this.details = response.details

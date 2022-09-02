@@ -12,6 +12,8 @@ const saleSchema = Schema({
     transaccion: {type: String, require:true},
     cupon: {type: String, require:true},
     estado: {type: String, require:true},
+    typePay: {type: String, require:false},
+    storePickup: {type: String, require:false},
     direccion: {type: Schema.ObjectId, ref: 'address', require: true},
     nota: {type: String, require:true},
     createAt: {type: Date, default: Date.now, required: true}

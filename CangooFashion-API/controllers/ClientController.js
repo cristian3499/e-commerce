@@ -258,6 +258,29 @@ const getAddress = async function (req, res) {
     }
 }
 
+const deleteAddress = async function (req, res) {
+    if (req.user) {
+        if (req.user.rol == 'Admin') {
+            var id = req.params['id'];
+            let client = req.params['client'];
+
+            const address = await Address.find({client : client})
+
+            address.forEach( async element => {
+                let reg = await Address.findByIdAndRemove({_id : id});
+                res.status(200).send({data :reg})
+            })
+
+            
+            
+        }else{
+            res.status(500).send({message : 'No access'})
+        }
+    }else{
+        res.status(500).send({message : 'No access'})
+    }
+}
+
 const changeAddressPrincipal = async function (req, res) {
     if (req.user) {
         let id = req.params['id']
@@ -329,6 +352,27 @@ const getOrderDetailsClient = async function (req, res) {
     }
 }
 
+const updateStatus = async function (req, res) {
+    if (req.user) {
+        if (req.user.rol == 'Admin') {
+            var id = req.params['id']
+            var data = req.body
+            
+            var reg = await Sale.findByIdAndUpdate({_id : id}, 
+                {
+                    estado : data.estado
+
+                    })
+                    res.status(200).send({data : reg})
+
+        }else{
+            res.status(500).send({message : 'No access'})
+        }
+    }else{
+        res.status(500).send({message : 'No access'})
+    }
+}
+
 /* contacto */
 const sendMessageContact = async function (req, res) {
     const data = req.body
@@ -368,5 +412,7 @@ module.exports = {
     sendMessageContact,
     getOrderClient,
     getOrderDetailsClient,
-    reviewClient
+    updateStatus,
+    reviewClient,
+    deleteAddress
 }

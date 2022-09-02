@@ -47,14 +47,14 @@
                 <input type="number" id="ac-phone" class="form-control form-control-lg" name="telefono" [(ngModel)]="address.telefono" placeholder="Telefono" required />
               </div>
               <div class="col-sm-12 form-group">
-                <label for="ac-address">Direccion</label>
-                <textarea class="form-control" name="direccion" [(ngModel)]="address.direccion" placeholder="Direccion" required  id="ac-address" cols="30" rows="3"></textarea>
+                <label for="ac-address">Calle y número</label>
+                <textarea class="form-control" name="direccion" [(ngModel)]="address.direccion" placeholder="Calles, entre que calles y numero" required  id="ac-address" cols="30" rows="3"></textarea>
               </div>
               <div class="col-sm-6 form-group">
                 <label for="ac-country">País</label>
-                <select class="custom-select custom-select-lg" name="pais" [(ngModel)]="address.pais" required id="ac-country" (change)="selectCountry()">
+                <select class="custom-select custom-select-lg" name="pais" [(ngModel)]="address.pais" required id="ac-country">
                   <option value="" selected disabled>Selecciona un país</option>
-                  <option value="Argentina">Argentina</option>
+                  <!-- <option value="Argentina">Argentina</option>
                   <option value="Bolivia">Bolivia</option>
                   <option value="Brasil">Brasil</option>
                   <option value="Chile">Chile</option>
@@ -67,37 +67,40 @@
                   <option value="Estados Unidos">Estados Unidos</option>
                   <option value="Guatemala">Guatemala</option>
                   <option value="Haití">Haití</option>
-                  <option value="Honduras">Honduras</option>
+                  <option value="Honduras">Honduras</option> -->
                   <option value="México">México</option>
-                  <option value="Nicaragua">Nicaragua</option>
+                  <!-- <option value="Nicaragua">Nicaragua</option>
                   <option value="Panamá">Panamá</option>
                   <option value="Paraguay">Paraguay</option>
                   <option value="Perú">Perú</option>
                   <option value="República Dominican">República Dominican</option>
                   <option value="Uruguay">Uruguay</option>
-                  <option value="Venezuela">Venezuela</option>
+                  <option value="Venezuela">Venezuela</option> -->
                 </select>
               </div>
               <div class="col-sm-6 form-group">
-                <label for="ac-region">Region</label>
-                <select class="custom-select custom-select-lg" name="region" [(ngModel)]="address.region"  id="ac-region" disabled="" (change)="selectRegion()">
+                <label for="ac-region">Cuidad</label>
+                <input type="text" class="form-control form-control-lg" name="region" [(ngModel)]="address.region"  id="ac-region" placeholder="Ciudad" required />
+                <!-- <select class="custom-select custom-select-lg"  disabled="" (change)="selectRegion()">
                   <option value="" selected disabled>Selecciona una region</option>
                   <option value="{{item.id}}" *ngFor="let item of regiones" >{{item.name}}</option>
-                </select>
+                </select> -->
               </div>
               <div class="col-sm-6 form-group">
-                <label for="ac-provincia">Provincia</label>
-                <select class="custom-select custom-select-lg" name="provincia" [(ngModel)]="address.provincia"  id="ac-provincia" disabled="" (change)="selectProvincia()">
+                <label for="ac-provincia">Colonia</label>
+                <input type="text" class="form-control form-control-lg" name="provincia" [(ngModel)]="address.provincia"  id="ac-provincia" placeholder="Colonia" required />
+                <!-- <select class="custom-select custom-select-lg" name="provincia" [(ngModel)]="address.provincia"  id="ac-provincia" disabled="" (change)="selectProvincia()">
                   <option value="" selected disabled>Selecciona una provincia</option>
                   <option value="{{item.id}}" *ngFor="let item of provincias" >{{item.name}}</option>
-                </select>
+                </select> -->
               </div>
               <div class="col-sm-6 form-group">
-                <label for="ac-distrito">Distrito</label>
-                <select class="custom-select custom-select-lg" name="distrito" [(ngModel)]="address.distrito"  id="ac-distrito" disabled="">
+                <label for="ac-distrito">Referencias</label>
+                <textarea class="form-control" name="distrito" [(ngModel)]="address.distrito"  id="ac-distrito" placeholder="Referencias de la casa" required  cols="30" rows="3"></textarea>
+                <!-- <select class="custom-select custom-select-lg"  disabled="">
                   <option value="" selected disabled>Selecciona un distrito</option>
                   <option value="{{item.id}}" *ngFor="let item of distritos" >{{item.name}}</option>
-                </select>
+                </select> -->
               </div>
               <div class="col-sm-12 form-group">
                 <div class="form-check">
@@ -125,6 +128,7 @@
                         <span class="d-block mb-3 fs-sm text-muted">{{item.zip}}</span>
                         <span class="badge badge-success" *ngIf="item.principal">Direccion principal</span>
                         <span class="badge badge-warning" style="cursor: pointer;" *ngIf="!item.principal" (click)="addressPrincipal(item._id)" >Establecer direccion</span>
+                        <!-- <span style="cursor: pointer;" class="badge badge-danger" (click)="deleteAddress(item._id)" >Borrar dirección</span> -->
                       </div>
                       <div class="col">
                         <p class="mb-3">{{item.direccion}}</p>

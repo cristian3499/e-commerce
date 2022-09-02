@@ -171,9 +171,9 @@ export class AddressComponent implements OnInit {
           }
           this.getAddress()
 
-          $('#ac-region').prop('disabled', true)
+          /* $('#ac-region').prop('disabled', true)
           $('#ac-provincia').prop('disabled', true)
-          $('#ac-distrito').prop('disabled', true)
+          $('#ac-distrito').prop('disabled', true) */
 
         }
       })
@@ -216,6 +216,24 @@ export class AddressComponent implements OnInit {
           overlayClose: true,
           animateInside: true,
         });
+      }
+    })
+  }
+
+  deleteAddress(id){
+    this._clientService.deleteAddress(id, localStorage.getItem('_id'), this.token).subscribe({
+      next : response => {
+        iziToast.success({
+          title: 'Okay',
+          position: 'topRight',
+          message: 'La direccion fue borrada',
+          overlayClose: true,
+          animateInside: true,
+        });
+      },
+      error : err=> {
+        console.log(err);
+
       }
     })
   }

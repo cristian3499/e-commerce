@@ -219,7 +219,7 @@ export class IndexProductComponent implements OnInit {
         if (response.data == undefined) {
           iziToast.error({
             title: 'ERROR',
-            position: 'topRight',
+            position: 'topCenter',
             message: 'El producto ya existe en el carrito',
             overlayClose: true,
             animateInside: true,
@@ -229,7 +229,7 @@ export class IndexProductComponent implements OnInit {
           console.log(response);
           iziToast.success({
             title: 'Okay',
-            position: 'topRight',
+            position: 'topCenter',
             message: 'Producto agregado',
             overlayClose: true,
             animateInside: true,

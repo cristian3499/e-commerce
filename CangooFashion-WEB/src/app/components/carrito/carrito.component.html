@@ -187,7 +187,7 @@
                 </div> -->
                 <div class="collapse show" id="cc-card" data-parent="#payment-methods">
                   <div class="payment-box">
-                    <div id="card" class="card-stripe"></div>
+                    <div id="card" class="card-stripe mb-3"></div>
                     <button id="btnPay" class="mt-4 btn btn-primary btn-lg btn-block">Completar orden</button>
                     <!-- <button id="btnPay">Pagar</button> -->
                     <div id="erroresCard" role="alert" ></div>
@@ -227,7 +227,15 @@
                 <div class="collapse" id="cash-card" data-parent="#payment-methods">
                   <div class="card-body pt-3 pb-0">
                     <p class="mb-2 text-muted">Solicitar orden.</p>
-                    <button class="mt-3 btn btn-primary btn-lg btn-block">Completar orden</button>
+                    <div class="form-check form-check-inline">
+                      <input class="form-check-input" type="radio" id="ex-radio-4" name="storePickup" [(ngModel)]="sale.storePickup" value="Si">
+                      <label class="form-check-label" for="ex-radio-4">Recoger en tienda</label>
+                    </div>
+                    <div class="form-check form-check-inline">
+                      <input class="form-check-input" type="radio" id="ex-radio-5" name="storePickup" [(ngModel)]="sale.storePickup" value="No" checked>
+                      <label class="form-check-label" for="ex-radio-5">Que sea por envio</label>
+                    </div>
+                    <button (click)="transferPayment()" class="mt-3 btn btn-primary btn-lg btn-block">Enviar pedido</button>
                   </div>
                 </div>
               </div>

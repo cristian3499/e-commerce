@@ -104,6 +104,11 @@ export class ApiService {
     return this._http.get(this.url + 'getOrderDetailsClient/' + id, {headers :  headers})
   }
 
+  updateStatus(id, data, token):Observable<any>{
+    let headers = new HttpHeaders({'Content-Type' : 'application/json', 'authorization' : token});
+    return this._http.put(this.url + 'updateStatus/' + id, data, {headers :  headers})
+  }
+
   /* KPI */
   monthlyKpi(token):Observable<any>{
     let headers = new HttpHeaders({'Content-Type' : 'application/json', 'authorization' : token});
