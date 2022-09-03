@@ -103,7 +103,6 @@ export class AddressComponent implements OnInit {
             )
           }
         })
-        console.log(this.provincias);
 
       }
     })
@@ -179,7 +178,7 @@ export class AddressComponent implements OnInit {
       })
       iziToast.success({
         title: 'Okay',
-        position: 'topRight',
+        position: 'topCenter',
         message: 'Direccion agregada correctamente',
         overlayClose: true,
         animateInside: true,
@@ -188,7 +187,7 @@ export class AddressComponent implements OnInit {
     }else{
       iziToast.error({
         title: 'ERROR',
-        position: 'topRight',
+        position: 'topCenter',
         message: 'Asegurate que los campos esten completos',
         overlayClose: true,
         animateInside: true,
@@ -211,7 +210,7 @@ export class AddressComponent implements OnInit {
         this.getAddress()
         iziToast.success({
           title: 'Okay',
-          position: 'topRight',
+          position: 'topCenter',
           message: 'La direccion principal fue cambiada',
           overlayClose: true,
           animateInside: true,
@@ -225,7 +224,7 @@ export class AddressComponent implements OnInit {
       next : response => {
         iziToast.success({
           title: 'Okay',
-          position: 'topRight',
+          position: 'topCenter',
           message: 'La direccion fue borrada',
           overlayClose: true,
           animateInside: true,

@@ -49,7 +49,6 @@ const getProduct = async function (req, res) {
 
 const getFrontPage = async function(req, res){
     var img = req.params['img']
-    console.log(img);
     fs.stat('./uploads/products/' + img, function (err) {
         if (!err) {
             let pathImg = './uploads/products/' + img

@@ -69,7 +69,6 @@ export class ConfigComponent implements OnInit {
         categories : this.config.categories,
         logo :  this.file
       }
-      console.log(data);
 
       this._apiServices.updateConfig("62e4c28a7df78c227b111720", data, this.token).subscribe({
         next : response => {

@@ -32,7 +32,6 @@ export class DetailOrdersComponent implements OnInit {
 
         this._clientService.getOrderDetailsClient(this.id, this.token).subscribe({
           next : response => {
-            console.log(response);
 
             if (response.data != undefined) {
               this.order = response.data
@@ -61,8 +60,6 @@ export class DetailOrdersComponent implements OnInit {
     this.review.client = item.client
     this.review.sale = this.id
 
-    /* console.log(this.review); */
-
   }
 
   emitirReview(){
@@ -71,7 +68,7 @@ export class DetailOrdersComponent implements OnInit {
     } else {
       iziToast.error({
         title: 'ERROR',
-        position: 'topRight',
+        position: 'topCenter',
         message: 'Asegurate que los campos esten completos',
         overlayClose: true,
         animateInside: true,

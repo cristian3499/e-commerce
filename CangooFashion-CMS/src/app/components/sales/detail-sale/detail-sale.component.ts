@@ -48,7 +48,6 @@ export class DetailSaleComponent implements OnInit {
         }else{
           this.order = undefined
         }
-        console.log(this.details);
 
 
       },
@@ -65,7 +64,6 @@ export class DetailSaleComponent implements OnInit {
 
       this._adminService.updateStatus(this.id, this.order, this.token).subscribe({
         next: response => {
-          console.log(response);
 
           iziToast.success({
             title: 'OKAY',

@@ -9,6 +9,8 @@ var ejs = require('ejs');
 var nodemailer = require('nodemailer');
 var smtpTransport = require('nodemailer-smtp-transport');
 var path = require('path');
+const stripe = require('stripe')('sk_test_51LV19EDvHTkSTTUCMgchAg3nOdTYrKMIdbeseLUbltVaoVSOaWHG7oBZlNlqTu8AxkK5pKnLOe1DnASOVivSnDCG00wmcm9IPV');
+
 
 const RegisterSale = async function(req, res){
     if (req.user) {
@@ -94,7 +96,7 @@ const sendEmail = async function(req, res){
     }));
 
     const sale = await Sale.findById({_id : id}).populate('client')
-    var details = await DSale.find({venta : id}).populate('product')
+    var details = await DSale.find({sale : id}).populate('product')
     
     var client = sale.client.name + ' ' + sale.client.lastName;
     var _id = sale._id
@@ -128,6 +130,19 @@ const sendEmail = async function(req, res){
     });
 }
 
+const createCharge = async function(req, res){
+    const data = req.body;
+   /*  const token = req.body.stripeToken; */
+    const charge = await stripe.charges.create({
+        amount: data.amount,
+        currency: data.currency,
+        source: token,
+        description: 'My First Test Charge',
+    });
+
+    res.status(200).send({data : charge})
+}
+
 function zfill(number, width) {
     var numberOutput = Math.abs(number); 
     var length = number.toString().length;
@@ -151,5 +166,6 @@ function zfill(number, width) {
 
 module.exports = {
     RegisterSale,
-    sendEmail
+    sendEmail,
+    createCharge
 }

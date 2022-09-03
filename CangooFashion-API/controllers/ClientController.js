@@ -10,27 +10,21 @@ const bcrypt = require('bcrypt-nodejs'); //Se va a encriptar la contraseña
 const jwt = require('../helpers/jwt')
 
 const registerClients = async function (req, res) {
-    const data = req.body; /* Va a ser el cuerpo del request */
-    var clientsArray = [];
-    clientsArray = await Client.find({email: data.email});
+    const data = req.body;
 
-    if (clientsArray.length == 0) {
-        if (data.password) {
-            bcrypt.hash(data.password, null, null, async function (err, hash) {
-                if (hash) {
-                    data.password = hash
-                    const clientRegister = await Client.create(data);
-                    res.status(200).send({data: clientRegister});
-                }else{
-                    res.status(500).send({message: 'Error Server', data: undefined})
-                }
-            })
-        } else {
-            res.status(400).send({message: 'Necesitas agregar una contraseña', data: undefined})
-        }
-    }else{
-        res.status(400).send({message: 'Correo electronico ya existente, prueba con otro', data: undefined})
-    }
+            if (data.password) {
+                bcrypt.hash(data.password, null, null, async function (err, hash) {
+                    if (hash) {
+                        data.password = hash
+                        const reg = await Client.create(data)
+                        res.status(200).send({data : reg});
+                    }else{
+                        res.status(500).send({message: 'Error Server', data: undefined})
+                    }
+                })
+            } else {
+                res.status(400).send({message: 'Necesitas agregar una contraseña', data: undefined})
+            }
 }
 
 const login = async function (req, res) {
@@ -135,6 +129,8 @@ const updateClient = async function (req, res) {
         if (req.user.rol == 'Admin') {
             var id = req.params['id']
             var data = req.body
+
+            console.log(data.password);
             
             var reg = await Client.findByIdAndUpdate({_id : id}, 
                 {

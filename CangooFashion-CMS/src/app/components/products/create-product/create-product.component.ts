@@ -30,7 +30,6 @@ export class CreateProductComponent implements OnInit {
     this._apiService.getConfigPublic().subscribe({
       next : response => {
         this.configuration = response.data
-        console.log(this.configuration);
 
       }
     })

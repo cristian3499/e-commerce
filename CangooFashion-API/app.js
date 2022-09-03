@@ -14,12 +14,10 @@ var io = require('socket.io')(server,{
 io.on('connection', function(socket){
     socket.on('removeProductCar', function(data){
         io.emit('newCar', data)
-        console.log(data);
     })
 
     socket.on('addProductCar', function(data){
         io.emit('addNewCar', data)
-        console.log(data);
     })
 })
 
@@ -28,7 +26,7 @@ mongoose.connect('mongodb://127.0.0.1:27017/cangoo-fashion', {useUnifiedTopology
         console.error(err);
     }else{
         server.listen(port, function () {
-            console.log("Servidor corrieno en el puerto: " + port);
+            console.log("Servidor corrieno correctamente");
         })
     }
 })

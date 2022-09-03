@@ -14,6 +14,9 @@ export class LoginComponent implements OnInit {
   public user : any ={};
   public userData : any = {};
   public token;
+  public client : any = {
+    gender : ''
+  };
 
   constructor(private _router: Router, private _clientService : ClientService) { }
 
@@ -26,7 +29,6 @@ export class LoginComponent implements OnInit {
 
   login(loginForm){
     if (loginForm.valid) {
-      console.log(this.user);
       let data = {
         email : this.user.email,
         password : this.user.password
@@ -43,7 +45,7 @@ export class LoginComponent implements OnInit {
             if(err.data == undefined){
               iziToast.error({
                 title: 'ERROR',
-                position: 'topRight',
+                position: 'topCenter',
                 message: err.error.message,
                 overlayClose: true,
                 animateInside: true,
@@ -56,7 +58,42 @@ export class LoginComponent implements OnInit {
     }else{
       iziToast.error({
         title: 'ERROR',
-        position: 'topRight',
+        position: 'topCenter',
+        message: 'Asegurate que los campos esten completos',
+        overlayClose: true,
+        animateInside: true,
+      });
+    }
+  }
+
+  clientRegister(clientForm){
+
+    if(clientForm.valid){
+      this._clientService.registerClients(this.client).subscribe({
+        next : response => {
+          iziToast.success({
+            title: 'Okay',
+            position: 'topCenter',
+            message: 'Registro realizado con exito!',
+            overlayClose: true,
+            animateInside: true,
+          });
+        },
+        error : err => {
+          iziToast.error({
+            title: 'ERROR',
+            position: 'topCenter',
+            message: 'Ups! al parecer hubo un error con el registro, intenta de nuevo',
+            overlayClose: true,
+            animateInside: true,
+          });
+        }
+      })
+
+    }else{
+      iziToast.error({
+        title: 'ERROR',
+        position: 'topCenter',
         message: 'Asegurate que los campos esten completos',
         overlayClose: true,
         animateInside: true,

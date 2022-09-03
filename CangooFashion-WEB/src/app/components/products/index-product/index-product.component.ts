@@ -40,7 +40,6 @@ export class IndexProductComponent implements OnInit {
     this._clientSerivice.getConfigPublic().subscribe({
       next : response => {
         this.configuration = response.data
-        console.log(this.configuration);
 
       }
     })
@@ -102,7 +101,6 @@ export class IndexProductComponent implements OnInit {
       this._clientSerivice.getConfigPublic().subscribe({
         next : response => {
           this.configuration = response.data
-          console.log(this.configuration);
 
         }
       })
@@ -226,7 +224,6 @@ export class IndexProductComponent implements OnInit {
           });
           this.btnCard = false
         }else{
-          console.log(response);
           iziToast.success({
             title: 'Okay',
             position: 'topCenter',

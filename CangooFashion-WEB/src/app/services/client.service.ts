@@ -20,6 +20,11 @@ export class ClientService {
     return this._http.post(this.url + 'login', data, {headers :  headers})
   }
 
+  registerClients(data):Observable<any>{
+    let headers = new HttpHeaders().set('Content-Type', 'application/json')
+    return this._http.post(this.url + 'registerClients', data, {headers :  headers})
+  }
+
   getClientByIdShop(id, token):Observable<any>{
     let headers = new HttpHeaders({'Content-Type' : 'application/json', 'authorization' : token});
     return this._http.get(this.url + 'getClientByIdShop/' + id, {headers :  headers})
@@ -114,6 +119,11 @@ export class ClientService {
     return this._http.post(this.url + 'RegisterSale', data, {headers :  headers})
   }
 
+  sendEmail(id, token):Observable<any>{
+    let headers = new HttpHeaders({'Content-Type' : 'application/json', 'authorization' : token});
+    return this._http.get(this.url + 'sendEmail/'+ id, {headers :  headers})
+  }
+
   getOrderClient(id, token):Observable<any>{
     let headers = new HttpHeaders({'Content-Type' : 'application/json', 'authorization' : token});
     return this._http.get(this.url + 'getOrderClient/' + id, {headers :  headers})
@@ -129,9 +139,9 @@ export class ClientService {
     return this._http.post(this.url + 'reviewClient', data, {headers :  headers})
   }
 
-  /* getTokenStripe(data):Observable<any>{
-    let headers = new HttpHeaders();
-    return this._http.post(this.url + 'RegisterSale', data, {headers :  headers})
-  } */
+  createCharge(data, token):Observable<any>{
+    let headers = new HttpHeaders({'Content-Type' : 'application/json', 'authorization' : token});
+    return this._http.post(this.url + 'createCharge', data, {headers :  headers})
+  }
 
 }

@@ -26,7 +26,6 @@ export class HomeComponent implements OnInit{
   initData(){
     this._adminService.monthlyKpi(this.token).subscribe({
       next : response => {
-        console.log(response);
         this.gananciaTotal = response.gananciaTotal
         this.totalMes = response.totalMes
         this.countSales = response.countSales

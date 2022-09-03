@@ -51,7 +51,6 @@ export class IndexProductComponent implements OnInit {
             nVentas : elemt.nVentas
           });
         })
-        console.log(this.exportProducts);
 
         this.loading = false;
       },
@@ -66,7 +65,6 @@ export class IndexProductComponent implements OnInit {
     if (this.filter) {
       this._productService.getProduct(this.filter, this.token).subscribe({
         next : response => {
-          console.log(response);
           this.products = response.data
           this.loading = false;
         },
@@ -78,7 +76,7 @@ export class IndexProductComponent implements OnInit {
     }else{
       iziToast.error({
         title: 'ERROR',
-        position: 'topRight',
+        position: 'topCenter',
         message: 'Ingrese el titulo del producto para filtrar',
         overlayClose: true,
         animateInside: true,
@@ -97,7 +95,7 @@ export class IndexProductComponent implements OnInit {
       next: response => {
         iziToast.success({
           title: 'OKAY',
-          position: 'topRight',
+          position: 'topCenter',
           message: 'Cliente eliminado correctamente',
           overlayClose: true,
           animateInside: true,
@@ -113,7 +111,7 @@ export class IndexProductComponent implements OnInit {
           title: 'ERROR',
           titleColor: '#CD0303',
           class: 'text-danger',
-          position: 'topRight',
+          position: 'topCenter',
           message: 'Error al intentar borrar el cliente',
           color: 'red', // blue, red, green, yellow,
           overlayClose: true,

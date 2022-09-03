@@ -50,7 +50,6 @@ export class HomeComponent implements OnInit {
             })
           }
         })
-        console.log(this.categories);
 
       }
     })
@@ -61,7 +60,6 @@ export class HomeComponent implements OnInit {
     /* Productos agregados recientemente */
     this._guestService.getProductNewsShop().subscribe({
       next : response =>{
-        console.log(response.data);
 
         this.newProduct = response.data
       },
@@ -72,8 +70,6 @@ export class HomeComponent implements OnInit {
     /*  Productos mas vendidos */
     this._guestService.getProductMostSelledShop().subscribe({
       next : response =>{
-        console.log(response.data);
-
         this.productMostSalled = response.data
       },
       error : err => {

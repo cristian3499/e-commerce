@@ -25,7 +25,7 @@ public loadBtn = false
         next : res => {
           iziToast.success({
             title: 'Okay',
-            position: 'topRight',
+            position: 'topCenter',
             message: "Mensaje enviado correctamente!",
             overlayClose: true,
             animateInside: true,
@@ -37,7 +37,7 @@ public loadBtn = false
           if(err.data == undefined){
             iziToast.error({
               title: 'ERROR',
-              position: 'topRight',
+              position: 'topCenter',
               message: "Ups! Hubo un problema al enviar tu mensaje",
               overlayClose: true,
               animateInside: true,

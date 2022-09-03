@@ -36,6 +36,7 @@ export class CarritoComponent implements OnInit {
   public envios : Array<any> = [];
   public precioEnvio = "0";
   public sale : any = {};
+  public data : any = {}
   public dSale : Array<any> = [];
   public cardData : any = {}
   public btnLoad = false
@@ -111,7 +112,8 @@ export class CarritoComponent implements OnInit {
 
       this._clientService.RegisterSale( this.sale, this.token).subscribe({
         next : response => {
-          console.log(response)
+         //console.log(response);
+
           iziToast.success({
             title: 'Okay',
             position: 'topCenter',
@@ -119,7 +121,11 @@ export class CarritoComponent implements OnInit {
             overlayClose: true,
             animateInside: true,
           });
-          this._router.navigate(['/account/orders/' + response.data._id])
+          this._clientService.sendEmail(response.data._id, this.token).subscribe({
+            next : resposnse => {
+              this._router.navigate(['/account/orders/' + response.data._id])
+            }
+          })
         }
       })
 
@@ -176,13 +182,32 @@ export class CarritoComponent implements OnInit {
 
       try {
         const res = await this.stripe.createSource(card, ownerInfo)
-        console.log(res);
+
+
+
+
         this.sale.details = this.dSale
         this.sale.typePay = 'CardPayment'
 
+        /* this.data = {
+          amount : res.source.amount,
+          currency : res.source.currency
+        }
+
+        this._clientService.createCharge(this.data, this.token).subscribe({
+          next : response => {
+            console.log(response);
+
+          },
+          error : err => {
+            console.log(err);
+
+          }
+        }) */
+
         this._clientService.RegisterSale( this.sale, this.token).subscribe({
           next : response => {
-            console.log(response)
+            //console.log(response)
             iziToast.success({
               title: 'Okay',
               position: 'topCenter',
@@ -190,7 +215,12 @@ export class CarritoComponent implements OnInit {
               overlayClose: true,
               animateInside: true,
             });
-            this._router.navigate(['/account/orders/' + response.data._id])
+            this._clientService.sendEmail(response.data._id, this.token).subscribe({
+              next : resposnse => {
+                this._router.navigate(['/account/orders/' + response.data._id])
+              }
+            })
+
           }
         })
       } catch (error) {
@@ -208,7 +238,7 @@ export class CarritoComponent implements OnInit {
 
         this._clientService.RegisterSale( this.sale, this.token).subscribe({
           next : response => {
-            console.log(response)
+            //console.log(response)
             iziToast.success({
               title: 'Okay',
               position: 'topCenter',
@@ -216,7 +246,11 @@ export class CarritoComponent implements OnInit {
               overlayClose: true,
               animateInside: true,
             });
-            this._router.navigate(['/account/orders/' + response.data._id])
+            this._clientService.sendEmail(response.data._id, this.token).subscribe({
+              next : resposnse => {
+                this._router.navigate(['/account/orders/' + response.data._id])
+              }
+            })
           }
         })
   }
@@ -229,7 +263,7 @@ export class CarritoComponent implements OnInit {
         this.clientCar.forEach(element => {
           this.dSale.push({
             product : element.product._id,
-            subtotal : element.product.price,
+            subtotal : element.product.price * element.quantity,
             varieties : element.variety,
             quantity : element.quantity,
             client : localStorage.getItem('_id')
@@ -246,7 +280,7 @@ export class CarritoComponent implements OnInit {
   calculateSubtotal(){
     this.subtotal = 0;
     this.clientCar.forEach(element => {
-      this.subtotal = this.subtotal + parseInt(element.product.price)
+      this.subtotal = (this.subtotal + parseInt(element.product.price) * element.quantity)
     })
     this.totalToPay =  this.subtotal
   }

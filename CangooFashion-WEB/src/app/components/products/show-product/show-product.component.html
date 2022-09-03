@@ -63,7 +63,7 @@
               <i class="sr-star cxi-star-filled active"></i>
               <i class="sr-star cxi-star"></i>
             </div>
-            <span class="font-size-sm text-muted">12 reviews</span>
+            <span class="font-size-sm text-muted">Reseñas</span>
           </div>
         </div>
 
@@ -105,20 +105,21 @@
             </div>
           </div>
           <div class="col-sm-4 order-sm-2 order-1 text-sm-right">
-            <a href="#modal-sizing" data-toggle="modal" class="d-inline-block mt-sm-4 mb-sm-0 mb-4 pt-sm-3 font-weight-bold text-decoration-0 text-dark">
+            <a data-toggle="modal" class="d-inline-block mt-sm-4 mb-sm-0 mb-4 pt-sm-3 font-weight-bold text-decoration-0 text-dark">
               <i class="cxi-hanger mr-2"></i>
-              Tallas
+              UNITALLA
             </a>
           </div>
           <div class="col-lg-2 col-4 order-lg-3 order-3">
             <div class="form-group">
               <label for="quantity">Cantidad</label>
-              <select class="form-control custom-select" id="quantity" name="quantity" [(ngModel)]="addCar.quantity">
+              <input type="number" id="cont-email" class="form-control form-control-lg" placeholder="johndoe@example.com" required="" name="quantity" [(ngModel)]="addCar.quantity">
+              <!-- <select class="form-control custom-select" id="quantity" name="quantity" [(ngModel)]="addCar.quantity">
                 <option value="1">1</option>
                 <option value="2">2</option>
                 <option value="5">5</option>
                 <option value="10">10</option>
-              </select>
+              </select> -->
             </div>
           </div>
           <div class="col-lg-6 order-lg-4 order-4">
@@ -279,7 +280,7 @@
                 <span class="h5 d-inline-block text-danger mb-0">${{product.price}}.00 MXN</span>
                 <!-- <del class="d-inline-block ml-2 pl-1 text-muted">$31.00</del> -->
               </div>
-              <button type="button" class="mb-2 btn btn-primary btn-block">
+              <button type="button" class="mb-2 btn btn-primary btn-block" (click)="addProduct()">
                 <i class="cxi-cart align-middle mt-n1 mr-2"></i>
                 Agregar al carrito
               </button>
@@ -297,7 +298,7 @@
 
           <!-- Rating -->
           <div class="col-sm-5 mb-sm-0 mb-4">
-            <h3 class="h2 mb-3 pb-1">12 reseñas</h3>
+            <h3 class="h2 mb-3 pb-1">Reseñas destacadas</h3>
             <div class="star-rating mb-3 pb-1">
               <i class="sr-star cxi-star-filled active"></i>
               <i class="sr-star cxi-star-filled active"></i>
@@ -306,8 +307,8 @@
               <i class="sr-star cxi-star"></i>
             </div>
             <span class="font-size-sm text-muted">
-              9 out of 12 (75%) <br>
-              Customers recommended this product
+              9 de 12 (75%) <br>
+              Los clientes recomendaron este producto
             </span>
           </div>
 
@@ -388,7 +389,7 @@
 
         <!-- Button + sorting -->
         <div class="d-flex align-items-center justify-content-between mb-4 pb-2 pb-sm-4">
-          <a href="#modal-review" data-toggle="modal" class="btn btn-primary">Dejar un comentario</a>
+          <!-- <a href="#modal-review" data-toggle="modal" class="btn btn-primary">Dejar un comentario</a> -->
           <!-- <div class="form-inline">
             <label for="sort-orders" class="d-none d-sm-block font-weight-bold mr-2 pr-1">Sort by</label>
             <select id="sort-orders" class="custom-select">
@@ -404,7 +405,7 @@
         <div class="mb-4 pb-4 border-bottom">
           <div class="row">
             <div class="col-md-3 col-sm-4 mb-sm-0 mb-3">
-              <h3 class="mb-2 font-size-lg">Devon Lane</h3>
+              <h3 class="mb-2 font-size-lg">Karina Aguilar</h3>
               <span class="d-block mb-3 font-size-sm text-muted">3 days ago</span>
               <div class="mt-n1 star-rating">
                 <i class="sr-star cxi-star-filled active"></i>
@@ -415,24 +416,84 @@
               </div>
             </div>
             <div class="col">
-              <p class="mb-3">Vel velit pulvinar montes, sit rhoncus odio molestie. Venenatis nunc fames ut proin adipiscing sit. Etiam egestas elit varius a, vestibulum bibendum nibh sociis in. Ut facilisis sit eget cum fringilla. Dapibus mauris viverra est sed risus quam lacinia.</p>
-              <div class="d-flex justify-content-end">
-                <a class="nav-link mr-3 p-0 font-size-sm" href="#">
+              <p class="mb-3">Me fascinan los diseños y el estilo de las prendas que adquirí, hice mi compra en línea y me
+                dieron una atención súper personalizada lo cual me sirvió mucho a decidir. El envío súper rápido y me encantó
+                tanto la tela como el corte de mi gabardina. Gracias. Los recomiendo.</p>
+              <!-- <div class="d-flex justify-content-end">
+                <a class="nav-link mr-3 p-0 font-size-sm">
                   <i class="cxi-like mr-2 font-size-base align-middle mt-n1 text-success"></i>
                   2
                 </a>
-                <a class="nav-link p-0 font-size-sm" href="#">
+                <a class="nav-link p-0 font-size-sm">
                   <i class="cxi-dislike mr-2 font-size-base align-middle mt-n1 text-danger"></i>
                   0
                 </a>
+              </div> -->
+            </div>
+          </div>
+        </div>
+
+        <div class="mb-4 pb-4 border-bottom">
+          <div class="row">
+            <div class="col-md-3 col-sm-4 mb-sm-0 mb-3">
+              <h3 class="mb-2 font-size-lg">Alicia Romero</h3>
+              <span class="d-block mb-3 font-size-sm text-muted">3 days ago</span>
+              <div class="mt-n1 star-rating">
+                <i class="sr-star cxi-star-filled active"></i>
+                <i class="sr-star cxi-star-filled active"></i>
+                <i class="sr-star cxi-star-filled active"></i>
+                <i class="sr-star cxi-star-filled active"></i>
+                <i class="sr-star cxi-star-filled active"></i>
               </div>
+            </div>
+            <div class="col">
+              <p class="mb-3">Excelente servicio y las prendas no se diga. Recomendable 100%</p>
+              <!-- <div class="d-flex justify-content-end">
+                <a class="nav-link mr-3 p-0 font-size-sm">
+                  <i class="cxi-like mr-2 font-size-base align-middle mt-n1 text-success"></i>
+                  2
+                </a>
+                <a class="nav-link p-0 font-size-sm">
+                  <i class="cxi-dislike mr-2 font-size-base align-middle mt-n1 text-danger"></i>
+                  0
+                </a>
+              </div> -->
+            </div>
+          </div>
+        </div>
+
+        <div class="mb-4 pb-4 border-bottom">
+          <div class="row">
+            <div class="col-md-3 col-sm-4 mb-sm-0 mb-3">
+              <h3 class="mb-2 font-size-lg">Josefina Hernandez</h3>
+              <span class="d-block mb-3 font-size-sm text-muted">3 days ago</span>
+              <div class="mt-n1 star-rating">
+                <i class="sr-star cxi-star-filled active"></i>
+                <i class="sr-star cxi-star-filled active"></i>
+                <i class="sr-star cxi-star-filled active"></i>
+                <i class="sr-star cxi-star-filled active"></i>
+                <i class="sr-star cxi-star-filled active"></i>
+              </div>
+            </div>
+            <div class="col">
+              <p class="mb-3">Fue mi primera compra quede satisfecha por la rapidez y el envió, claro que volveré a comprar nuevamente. Gracias </p>
+              <!-- <div class="d-flex justify-content-end">
+                <a class="nav-link mr-3 p-0 font-size-sm">
+                  <i class="cxi-like mr-2 font-size-base align-middle mt-n1 text-success"></i>
+                  2
+                </a>
+                <a class="nav-link p-0 font-size-sm">
+                  <i class="cxi-dislike mr-2 font-size-base align-middle mt-n1 text-danger"></i>
+                  0
+                </a>
+              </div> -->
             </div>
           </div>
         </div>
 
 
         <!-- Pagination: With icons -->
-        <nav class="mt-4 pt-4" aria-label="Reviews pagination">
+        <!-- <nav class="mt-4 pt-4" aria-label="Reviews pagination">
           <ul class="pagination justify-content-center mb-0">
             <li class="page-item d-sm-none">
               <span class="page-link page-link-static">1 / 4</span>
@@ -457,7 +518,7 @@
               </a>
             </li>
           </ul>
-        </nav>
+        </nav> -->
       </div>
       <div class="col-md-4 offset-lg-1">
 
@@ -489,7 +550,7 @@
               <span class="h5 d-inline-block text-danger mb-0">${{product.price}}.00 MXN</span>
               <!-- <del class="d-inline-block ml-2 pl-1 text-muted">$31.00</del> -->
             </div>
-            <button type="button" class="mb-2 btn btn-primary btn-block">
+            <button type="button" class="mb-2 btn btn-primary btn-block" (click)="addProduct()">
               <i class="cxi-cart align-middle mt-n1 mr-2"></i>
               Agregar al carrito
             </button>
@@ -541,7 +602,7 @@
     </div>
   </section>
 
-  <div class="modal fade" id="modal-sizing" tabindex="-1" style="display: none;" aria-hidden="true">
+  <!-- <div class="modal fade" id="modal-sizing" tabindex="-1" style="display: none;" aria-hidden="true">
     <div class="modal-dialog modal-xl modal-dialog-centered" role="document">
       <div class="modal-content border-0">
         <div class="modal-header border-0 pb-0 px-md-5 px-4 d-block position-relative">
@@ -679,6 +740,6 @@
         </div>
       </div>
     </div>
-  </div>
+  </div> -->
 </main>
 <app-footer></app-footer>

@@ -34,7 +34,6 @@ export class InventoryProductComponent implements OnInit {
     this._roue.params.subscribe(
       params => {
         this.id = params['id']
-        console.log(this.id);
 
         this._prodcutService.getProductById(this.id, this.token).subscribe({
           next: response =>{
@@ -42,12 +41,10 @@ export class InventoryProductComponent implements OnInit {
               this.product = undefined
             }else{
               this.product = response.data
-              console.log(this.product);
 
               this._prodcutService.inventoryProduct(this.product._id, this.token).subscribe({
                 next : response => {
                   this.inventory = response.data
-                  console.log(this.inventory);
 
                   this.loading = false;
                 },
@@ -142,12 +139,9 @@ export class InventoryProductComponent implements OnInit {
         supplier : inventoryForm.value.supplier
       }
 
-      console.log(data);
-
 
       this._prodcutService.registerInventary(data, this.token).subscribe({
         next : response => {
-          console.log(response);
           iziToast.success({
             title: 'OKAY',
             position: 'topCenter',

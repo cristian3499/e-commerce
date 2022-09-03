@@ -64,7 +64,7 @@ export class UpdateProductComponent implements OnInit {
           error: err => {
             iziToast.error({
               title: 'ERROR',
-              position: 'topRight',
+              position: 'topCenter',
               message: 'Error al encontrar el producto',
               overlayClose: true,
               animateInside: true,
@@ -78,8 +78,6 @@ export class UpdateProductComponent implements OnInit {
 
   updateProduct(updateForm){
     if (updateForm.valid) {
-      console.log(this.product);
-      console.log(this.file);
       var data : any = {};
 
       if (this.file != undefined) {
@@ -96,7 +94,7 @@ export class UpdateProductComponent implements OnInit {
         next : response => {
           iziToast.success({
             title: 'Okay',
-            position: 'topRight',
+            position: 'topCenter',
             message: 'Producto actualizado!',
             overlayClose: true,
             animateInside: true,
@@ -107,7 +105,7 @@ export class UpdateProductComponent implements OnInit {
         error : err => {
           iziToast.error({
             title: 'ERROR',
-            position: 'topRight',
+            position: 'topCenter',
             message: 'Error al actualizar el producto',
             overlayClose: true,
             animateInside: true,
@@ -119,7 +117,7 @@ export class UpdateProductComponent implements OnInit {
     }else{
       iziToast.error({
         title: 'ERROR',
-        position: 'topRight',
+        position: 'topCenter',
         message: 'Verifica que los datos del formulario esten correctos',
         overlayClose: true,
         animateInside: true,
@@ -138,7 +136,7 @@ export class UpdateProductComponent implements OnInit {
     }else{
       iziToast.error({
         title: 'ERROR',
-        position: 'topRight',
+        position: 'topCenter',
         message: 'Error al cargar la imagen',
         overlayClose: true,
         animateInside: true,
@@ -159,7 +157,7 @@ export class UpdateProductComponent implements OnInit {
       }else{
         iziToast.error({
           title: 'ERROR',
-          position: 'topRight',
+          position: 'topCenter',
           message: 'El tipo de imagen no coincide.',
           overlayClose: true,
           animateInside: true,
@@ -171,7 +169,7 @@ export class UpdateProductComponent implements OnInit {
     }else{
       iziToast.error({
         title: 'ERROR',
-        position: 'topRight',
+        position: 'topCenter',
         message: 'Imagen mayor a 4MB',
         overlayClose: true,
         animateInside: true,

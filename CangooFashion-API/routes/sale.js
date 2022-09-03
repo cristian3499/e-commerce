@@ -7,5 +7,7 @@ const auth = require('../middlewares/authenticate')
 
 api.post('/RegisterSale', auth.auth, SaleController.RegisterSale)
 api.get('/sendEmail/:id', auth.auth, SaleController.sendEmail)
+api.post('/createCharge', auth.auth, SaleController.createCharge)
+
 
 module.exports =  api;

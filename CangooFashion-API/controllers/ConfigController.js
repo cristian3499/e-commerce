@@ -27,7 +27,6 @@ const updateConfig = async function (req, res) {
             const data = req.body
 
             if (req.files) {
-                console.log("Si hay img");
                 const imgPath = req.files.logo.path; //Se esta tomando el ruta del indice path y asi tener el nombre
                 const name = imgPath.split('\\');
                 const nameLogo = name[2];
@@ -50,7 +49,6 @@ const updateConfig = async function (req, res) {
 
                 res.status(200).send({data : reg})
             }else{
-                console.log("No hay img");
                 let reg = await Config.findByIdAndUpdate({_id : "62e4c28a7df78c227b111720"}, {
                     categories : data.categories,
                     businessName : data.businessName,
@@ -77,7 +75,6 @@ const updateConfig = async function (req, res) {
 
 const getLogo = async function(req, res){
     var img = req.params['img']
-    console.log(img);
     fs.stat('./uploads/configs/' + img, function (err) {
         if (!err) {
             let pathImg = './uploads/configs/' + img

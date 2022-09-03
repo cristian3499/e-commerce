@@ -40,13 +40,12 @@ export class VarietiesProductComponent implements OnInit {
                 this.product = response.data
                 this.loading = false;
               }
-              console.log(this.product);
 
             },
             error: err => {
               iziToast.error({
                 title: 'ERROR',
-                position: 'topRight',
+                position: 'topCenter',
                 message: 'Error al encontrar el producto',
                 overlayClose: true,
                 animateInside: true,
@@ -72,7 +71,7 @@ export class VarietiesProductComponent implements OnInit {
     }else{
       iziToast.error({
         title: 'ERROR',
-        position: 'topRight',
+        position: 'topCenter',
         message: 'Necesitas completar el campo de varidad',
         overlayClose: true,
         animateInside: true,
@@ -95,7 +94,7 @@ export class VarietiesProductComponent implements OnInit {
           next : response => {
             iziToast.success({
               title: 'Okay',
-              position: 'topRight',
+              position: 'topCenter',
               message: 'Variedades actualizadas',
               overlayClose: true,
               animateInside: true,
@@ -105,7 +104,7 @@ export class VarietiesProductComponent implements OnInit {
           error : err =>{
             iziToast.error({
               title: 'ERROR',
-              position: 'topRight',
+              position: 'topCenter',
               message: 'Hubo un problema al agregar el regitro',
               overlayClose: true,
               animateInside: true,
@@ -115,7 +114,7 @@ export class VarietiesProductComponent implements OnInit {
       }else{
         iziToast.error({
           title: 'ERROR',
-          position: 'topRight',
+          position: 'topCenter',
           message: 'Se debe agergar al menos una varidad',
           overlayClose: true,
           animateInside: true,
@@ -124,7 +123,7 @@ export class VarietiesProductComponent implements OnInit {
     }else{
       iziToast.error({
         title: 'ERROR',
-        position: 'topRight',
+        position: 'topCenter',
         message: 'Necesitas agregar el titulo de la variedad',
         overlayClose: true,
         animateInside: true,

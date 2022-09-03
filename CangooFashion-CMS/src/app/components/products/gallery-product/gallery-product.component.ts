@@ -32,7 +32,6 @@ export class GalleryProductComponent implements OnInit {
       this._roue.params.subscribe(
         params => {
           this.id = params['id']
-          console.log(this.id);
 
           this.intData();
         }
@@ -48,13 +47,12 @@ intData(){
         this.product = response.data
         this.loading = false;
       }
-      console.log(this.product);
 
     },
     error: err => {
       iziToast.error({
         title: 'ERROR',
-        position: 'topRight',
+        position: 'topCenter',
         message: 'Error al encontrar el producto',
         overlayClose: true,
         animateInside: true,
@@ -76,7 +74,7 @@ intData(){
     }else{
       iziToast.error({
         title: 'ERROR',
-        position: 'topRight',
+        position: 'topCenter',
         message: 'Error al cargar la imagen',
         overlayClose: true,
         animateInside: true,
@@ -90,7 +88,7 @@ intData(){
       }else{
         iziToast.error({
           title: 'ERROR',
-          position: 'topRight',
+          position: 'topCenter',
           message: 'El tipo de imagen no coincide.',
           overlayClose: true,
           animateInside: true,
@@ -101,7 +99,7 @@ intData(){
     }else{
       iziToast.error({
         title: 'ERROR',
-        position: 'topRight',
+        position: 'topCenter',
         message: 'Imagen mayor a 4MB',
         overlayClose: true,
         animateInside: true,
@@ -109,7 +107,6 @@ intData(){
       $('#inp-image').val('')
       this.file = undefined
     }
-    console.log(this.file);
 
   }
 
@@ -124,7 +121,7 @@ intData(){
         next : response => {
           iziToast.success({
             title: 'OKAY',
-            position: 'topRight',
+            position: 'topCenter',
             message: 'Imagen agregada correctamente',
             overlayClose: true,
             animateInside: true,
@@ -136,7 +133,7 @@ intData(){
           console.log(err);
           iziToast.error({
             title: 'ERROR',
-            position: 'topRight',
+            position: 'topCenter',
             message: 'Error al subir la imagen',
             overlayClose: true,
             animateInside: true,
@@ -146,7 +143,7 @@ intData(){
     }else{
       iziToast.error({
         title: 'ERROR',
-        position: 'topRight',
+        position: 'topCenter',
         message: 'Debe seleccionar una imagen',
         overlayClose: true,
         animateInside: true,
@@ -160,7 +157,7 @@ intData(){
       next: response => {
         iziToast.success({
           title: 'OKAY',
-          position: 'topRight',
+          position: 'topCenter',
           message: 'Imagen eliminada correctamente',
           overlayClose: true,
           animateInside: true,
@@ -176,7 +173,7 @@ intData(){
           title: 'ERROR',
           titleColor: '#CD0303',
           class: 'text-danger',
-          position: 'topRight',
+          position: 'topCenter',
           message: 'Error al intentar borrar el cliente',
           color: 'red', // blue, red, green, yellow,
           overlayClose: true,

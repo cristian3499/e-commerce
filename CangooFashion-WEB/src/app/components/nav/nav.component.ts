@@ -68,7 +68,6 @@ export class NavComponent implements OnInit {
 
   ngOnInit(): void {
     this.socket.on('newCar', (data) =>{
-      console.log(data);
       this._clientService.getClientCar(this.dataUserLC._id, this.token).subscribe({
         next : response => {
           this.clientCar = response.data;
@@ -79,7 +78,6 @@ export class NavComponent implements OnInit {
     })
 
     this.socket.on('addNewCar', (data) =>{
-      console.log(data);
       this._clientService.getClientCar(this.dataUserLC._id, this.token).subscribe({
         next : response => {
           this.clientCar = response.data;
@@ -109,7 +107,7 @@ export class NavComponent implements OnInit {
   calculateSubtotal(){
     this.subtotal = 0;
     this.clientCar.forEach(element => {
-      this.subtotal = this.subtotal + parseInt(element.product.price)
+      this.subtotal = (this.subtotal + parseInt(element.product.price) * element.quantity)
     })
   }
 
