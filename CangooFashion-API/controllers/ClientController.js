@@ -96,7 +96,7 @@ const registerClientCMS = async function (req, res) {
                 res.status(400).send({message: 'Necesitas agregar una contraseña', data: undefined})
             }
 
-            
+
         }else{
             res.status(500).send({message : 'No access'})
         }
@@ -131,17 +131,17 @@ const updateClient = async function (req, res) {
             var data = req.body
 
             console.log(data.password);
-            
-            var reg = await Client.findByIdAndUpdate({_id : id}, 
+
+            var reg = await Client.findByIdAndUpdate({_id : id},
                 {
-                    name : data.name,                 
+                    name : data.name,
                     lastName : data.lastName,
-                    country : data.country, 
-                    email : data.email,  
+                    country : data.country,
+                    email : data.email,
                     phone: data.phone,
                     gender: data.gender,
                     dateOfBirth: data.dateOfBirth,
-                    dni:  data.dni         
+                    dni:  data.dni
 
                     })
                     res.status(200).send({data : reg})
@@ -199,7 +199,7 @@ const updateClientShop = async function (req, res) {
               gender: data.gender,
               dateOfBirth: data.dateOfBirth,
               dni: data.dni
-              
+
             });
             res.status(200).send({data : reg});
           });
@@ -212,7 +212,7 @@ const updateClientShop = async function (req, res) {
             gender: data.gender,
             dateOfBirth: data.dateOfBirth,
             dni: data.dni
-            
+
           });
           res.status(200).send({data : reg});
         }
@@ -233,10 +233,10 @@ const registerAddress = async function (req, res) {
         }else{
 
         }
-        
+
 
             const reg = await Address.create(data)
-            
+
             res.status(200).send({data :reg})
     }else{
         res.status(500).send({message : 'No access'})
@@ -247,7 +247,7 @@ const getAddress = async function (req, res) {
     if (req.user) {
         let id = req.params['id']
         const address = await Address.find({client : id}).populate('client').sort({createAt : - 1})
-        
+
         res.status(200).send({data :address})
     }else{
         res.status(500).send({message : 'No access'})
@@ -267,8 +267,8 @@ const deleteAddress = async function (req, res) {
                 res.status(200).send({data :reg})
             })
 
-            
-            
+
+
         }else{
             res.status(500).send({message : 'No access'})
         }
@@ -301,7 +301,7 @@ const getAddressPrincipal = async function (req, res) {
         var address = undefined
 
         address = await Address.findOne({client : id, principal : true})
-        
+
         if (address == undefined) {
             res.status(200).send({data : undefined})
         }else{
@@ -332,7 +332,7 @@ const getOrderClient = async function (req, res) {
 const getOrderDetailsClient = async function (req, res) {
     if (req.user) {
         var id = req.params['id']
-        
+
         try {
             let sale = await Sale.findById({_id : id}).populate('direccion').populate('client')
             let details = await DSale.find({sale : id}).populate('product')
@@ -353,8 +353,8 @@ const updateStatus = async function (req, res) {
         if (req.user.rol == 'Admin') {
             var id = req.params['id']
             var data = req.body
-            
-            var reg = await Sale.findByIdAndUpdate({_id : id}, 
+
+            var reg = await Sale.findByIdAndUpdate({_id : id},
                 {
                     estado : data.estado
 
@@ -382,7 +382,7 @@ const reviewClient = async function (req, res) {
     if (req.user) {
         let data = req.body
         const reg = await Review.create(data)
-        
+
         res.status(200).send({data : reg})
     }else{
         res.status(500).send({message : 'No access'})
